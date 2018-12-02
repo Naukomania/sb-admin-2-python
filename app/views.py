@@ -1,5 +1,16 @@
 from flask import render_template
+from flask import jsonify
 from app import app
+from app import fias_api
+
+@app.route('/example.html')
+def example():
+    return render_template('pages/example.html', title="Example", header="Example")
+
+@app.route('/suggest')
+def suggest():
+    data = fias_api.suggest('москва', 20)
+    return jsonify(summary = data)
 
 @app.route('/login.html')
 def login():
