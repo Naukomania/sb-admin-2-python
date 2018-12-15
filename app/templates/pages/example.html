@@ -62,7 +62,7 @@
         responsive: true
       });
 
-      $.get('/suggest').done(function(data) {
+      $.get('/suggest/{{place}}').done(function(data) {
         alert( "success" );
         console.log(data);
         if (data && data.summary && data.summary.suggestions) {
