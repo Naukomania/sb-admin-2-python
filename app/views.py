@@ -2,13 +2,16 @@ from flask import render_template
 from flask import jsonify
 from app import app
 from app import fias_api
+from flask import request
 
-@app.route('/example/<place>')
-def example(place):
+@app.route('/example')
+def example():
+    place = request.args.get('place') if request.args.get('place') else 'москва'
     return render_template('pages/example.html', title="Example", header="Example", place=place)
 
-@app.route('/suggest/<place>')
-def suggest(place):
+@app.route('/suggest')
+def suggest():
+    place = request.args.get('place')
     data = fias_api.suggest(place, 10)
     return jsonify(summary = data)
 
